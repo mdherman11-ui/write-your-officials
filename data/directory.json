@@ -1,0 +1,82 @@
+{
+  "_about": "Community-maintained list of officials that the automatic lookups miss (mostly city and county). Anyone can add a place with a pull request. 'scope' controls who sees it: 'state' = everyone in that state, 'county' = everyone in that county, 'city' = everyone whose address is in that city. Leave 'email' empty when an office only takes a web form.",
+  "places": [
+    {
+      "id": "oh-state",
+      "name": "State of Ohio",
+      "scope": "state",
+      "level": "state",
+      "state": "OH",
+      "source": "https://governor.ohio.gov/contact",
+      "verified": "2026-10-08",
+      "officials": [
+        { "name": "Office of the Governor", "title": "Governor of Ohio", "email": "", "form": "https://governor.ohio.gov/contact" }
+      ]
+    },
+    {
+      "id": "oh-cuyahoga-county",
+      "name": "Cuyahoga County",
+      "scope": "county",
+      "level": "county",
+      "state": "OH",
+      "county": "Cuyahoga",
+      "source": "https://www.cuyahogacounty.gov/council",
+      "verified": "2026-10-08",
+      "notes": "Add your County Council district member here once confirmed. The county lists members at cuyahogacounty.gov/council.",
+      "officials": [
+        { "name": "Office of the County Executive", "title": "Cuyahoga County Executive", "email": "", "form": "https://www.cuyahogacounty.gov/executive" },
+        { "name": "Cuyahoga County Council", "title": "County Council (general)", "email": "", "form": "https://www.cuyahogacounty.gov/council" }
+      ]
+    },
+    {
+      "id": "oh-north-royalton",
+      "name": "North Royalton",
+      "scope": "city",
+      "level": "local",
+      "state": "OH",
+      "county": "Cuyahoga",
+      "match": ["north royalton"],
+      "source": "https://northroyalton.gov/government/council_office/council_members.php",
+      "verified": "2026-10-08",
+      "officials": [
+        { "name": "Paul F. Marnecheck II", "title": "Mayor of North Royalton", "email": "mayormarnecheck@northroyalton.org" },
+        { "name": "Mary Gorjanc", "title": "President of Council", "email": "councilpres@northroyalton.org" },
+        { "name": "Matt Coleman", "title": "City Council, Ward 1", "email": "ward1@northroyalton.org" },
+        { "name": "Gary Petrusky", "title": "City Council, Ward 2", "email": "ward2@northroyalton.org" },
+        { "name": "Sarah Wojslaw", "title": "City Council, Ward 3", "email": "ward3@northroyalton.org" },
+        { "name": "David Quolke", "title": "City Council, Ward 4", "email": "ward4@northroyalton.org" },
+        { "name": "Kaylee Green", "title": "City Council, Ward 5", "email": "ward5@northroyalton.org" },
+        { "name": "Edward Cyngier", "title": "City Council, Ward 6", "email": "ward6@northroyalton.org" }
+      ]
+    },
+    {
+      "id": "oh-cleveland",
+      "name": "Cleveland",
+      "scope": "city",
+      "level": "local",
+      "state": "OH",
+      "county": "Cuyahoga",
+      "match": ["cleveland"],
+      "source": "https://www.clevelandcitycouncil.gov/council/council-members",
+      "verified": "2026-10-08",
+      "notes": "Cleveland's council site lists members without public email addresses, so these are contact-page only until someone adds emails.",
+      "officials": [
+        { "name": "Joseph T. Jones", "title": "Cleveland City Council, Ward 1", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Kevin L. Bishop", "title": "Cleveland City Council, Ward 2", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Deborah Gray", "title": "Cleveland City Council, Ward 3", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Kris Harsh", "title": "Cleveland City Council, Ward 4", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Richard A. Starr", "title": "Cleveland City Council, Ward 5", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Blaine A. Griffin", "title": "Cleveland City Council, Ward 6", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Austin N. Davis", "title": "Cleveland City Council, Ward 7", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Stephanie D. Howse-Jones", "title": "Cleveland City Council, Ward 8", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Kevin Conwell", "title": "Cleveland City Council, Ward 9", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Michael D. Polensek", "title": "Cleveland City Council, Ward 10", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Nikki Hudson", "title": "Cleveland City Council, Ward 11", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Tanmay Shah", "title": "Cleveland City Council, Ward 12", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Brian Kazy", "title": "Cleveland City Council, Ward 13", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Jasmin Santana", "title": "Cleveland City Council, Ward 14", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" },
+        { "name": "Charles J. Slife", "title": "Cleveland City Council, Ward 15", "email": "", "form": "https://www.clevelandcitycouncil.gov/council/council-members" }
+      ]
+    }
+  ]
+}

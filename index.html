@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write Your Officials</title>
+  <meta name="description" content="Find every elected official for a location, from city hall to Congress, and send each one the same email from your own Gmail.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div>
+        <p class="eyebrow">Civic mail merge</p>
+        <h1>Write Your Officials</h1>
+        <p class="lede">Pick a place. We find who represents it, from city council to Congress. You write one message, and it goes to each of them separately from your own Gmail.</p>
+      </div>
+      <div class="account" id="account">
+        <button class="btn btn-ghost" id="settingsBtn" type="button" aria-haspopup="dialog">Settings</button>
+        <button class="btn btn-primary" id="connectBtn" type="button">Connect Gmail</button>
+        <span class="who" id="whoami" hidden></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="step" id="step1">
+      <div class="step-head"><span class="num">1</span><h2>Where?</h2></div>
+      <form id="locForm" class="loc-form" autocomplete="off">
+        <label class="sr" for="locInput">Address, city, or ZIP</label>
+        <input id="locInput" type="text" placeholder="e.g. 14600 State Rd, North Royalton, OH  or  North Royalton, OH" required>
+        <button class="btn btn-primary" type="submit" id="findBtn">Find officials</button>
+      </form>
+      <p class="hint">A full street address gives the most accurate districts. A city name works too, but state and congressional districts may be approximate.</p>
+      <div class="extra-places" id="extraPlacesWrap" hidden>
+        <label for="extraPlace">Also include another place from the directory:</label>
+        <div class="row">
+          <select id="extraPlace"></select>
+          <button class="btn btn-ghost" type="button" id="addPlaceBtn">Add</button>
+        </div>
+      </div>
+      <div id="locStatus" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="step" id="step2" hidden>
+      <div class="step-head"><span class="num">2</span><h2>Who gets it</h2>
+        <div class="step-tools">
+          <button class="btn btn-small btn-ghost" type="button" id="selAll">Select all</button>
+          <button class="btn btn-small btn-ghost" type="button" id="selNone">Clear</button>
+        </div>
+      </div>
+      <div id="results"></div>
+      <details class="add-manual">
+        <summary>Add someone manually</summary>
+        <form id="manualForm" class="manual-form">
+          <input id="mName" placeholder="Name" required>
+          <input id="mTitle" placeholder="Office or title">
+          <input id="mEmail" type="email" placeholder="email@example.gov" required>
+          <button class="btn btn-ghost" type="submit">Add</button>
+        </form>
+      </details>
+      <div id="formOnly"></div>
+    </section>
+
+    <section class="step" id="step3" hidden>
+      <div class="step-head"><span class="num">3</span><h2>Your message</h2></div>
+      <label for="subject">Subject</label>
+      <input id="subject" type="text" maxlength="200" placeholder="Subject line">
+      <label for="body">Message</label>
+      <textarea id="body" rows="12" placeholder="Dear {{name}},&#10;&#10;I live in {{place}} and I am writing about..."></textarea>
+      <p class="hint">Placeholders: <code>{{name}}</code> official's name, <code>{{title}}</code> their office, <code>{{place}}</code> your location. Each person gets their own copy, so nobody sees the others' addresses.</p>
+      <div class="row wrap-row">
+        <label class="check"><input type="checkbox" id="ccSelf"> Send me a copy of each (BCC)</label>
+        <button class="btn btn-ghost btn-small" type="button" id="shareBtn">Copy share link with this message</button>
+      </div>
+    </section>
+
+    <section class="step" id="step4" hidden>
+      <div class="step-head"><span class="num">4</span><h2>Send</h2></div>
+      <div class="summary" id="sendSummary"></div>
+      <div class="row wrap-row">
+        <button class="btn btn-primary" type="button" id="sendBtn">Send from my Gmail</button>
+        <button class="btn btn-ghost" type="button" id="manualSendBtn">Open each in Gmail instead</button>
+        <button class="btn btn-danger" type="button" id="stopBtn" hidden>Stop</button>
+      </div>
+      <div class="progress" id="progressWrap" hidden><div class="bar" id="bar"></div></div>
+      <ol class="log" id="log"></ol>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Your Gmail sign-in stays in your browser. This site has no server and stores nothing about you. Officials' data comes from the U.S. Census, the unitedstates/congress-legislators project, OpenStreetMap, Open States and Cicero when keys are set, and a community directory. Always double-check recipients before sending.</p>
+  </footer>
+
+  <dialog id="settingsDlg">
+    <form method="dialog" class="dlg">
+      <h3>Settings</h3>
+      <p class="hint">Saved only in this browser. Blank fields fall back to the site defaults.</p>
+      <label for="sClient">Google OAuth Client ID</label>
+      <input id="sClient" placeholder="....apps.googleusercontent.com">
+      <label for="sOpen">Open States API key (free)</label>
+      <input id="sOpen" placeholder="Adds state legislators with emails">
+      <label for="sCicero">Cicero API key (paid, optional)</label>
+      <input id="sCicero" placeholder="Adds city and county officials in many areas">
+      <div class="row end">
+        <button class="btn btn-ghost" value="cancel">Cancel</button>
+        <button class="btn btn-primary" id="saveSettings" value="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirmDlg">
+    <form method="dialog" class="dlg">
+      <h3>Ready to send?</h3>
+      <div id="confirmText"></div>
+      <div class="preview" id="previewBox"></div>
+      <div class="row end">
+        <button class="btn btn-ghost" value="cancel">Go back</button>
+        <button class="btn btn-primary" value="ok">Send now</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
